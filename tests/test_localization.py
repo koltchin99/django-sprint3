@@ -23,14 +23,11 @@ def test_blog_in_rus():
     )
 
 
-@pytest.mark.parametrize(
-        ('n_model', 'n_verbose', 'n_verbose_plural'), [
-            ('Category', 'категория', 'Категории'),
-            ('Location', 'местоположение', 'Местоположения'),
-            ('Post', 'публикация', 'Публикации'),
-        ],
-        ids=['Category', 'Location', 'Post'],
-)
+@pytest.mark.parametrize(('n_model', 'n_verbose', 'n_verbose_plural'), [
+    ('Category', 'категория', 'Категории'),
+    ('Location', 'местоположение', 'Местоположения'),
+    ('Post', 'публикация', 'Публикации'),
+])
 def test_models_translated(n_model, n_verbose, n_verbose_plural):
     models = apps.get_models()
     found_model = [
@@ -54,43 +51,23 @@ def test_models_translated(n_model, n_verbose, n_verbose_plural):
     )
 
 
-@pytest.mark.parametrize(
-    ('n_model', 'param', 'n_verbose'),
-    [
-        ('Category', 'is_published', 'Опубликовано'),
-        ('Category', 'title', 'Заголовок'),
-        ('Category', 'slug', 'Идентификатор'),
-        ('Category', 'description', 'Описание'),
-        ('Category', 'created_at', 'Добавлено'),
-        ('Location', 'name', 'Название места'),
-        ('Location', 'created_at', 'Добавлено'),
-        ('Location', 'is_published', 'Опубликовано'),
-        ('Post', 'pub_date', 'Дата и время публикации'),
-        ('Post', 'text', 'Текст'),
-        ('Post', 'author', 'Автор публикации'),
-        ('Post', 'category', 'Категория'),
-        ('Post', 'location', 'Местоположение'),
-        ('Post', 'created_at', 'Добавлено'),
-        ('Post', 'is_published', 'Опубликовано'),
-    ],
-    ids=[
-        'Category_is_published',
-        'Category_title',
-        'Category_slug',
-        'Category_description',
-        'Category_created_at',
-        'Location_name',
-        'Location_created_at',
-        'Location_is_published',
-        'Post_pub_date',
-        'Post_text',
-        'Post_author',
-        'Post_category',
-        'Post_location',
-        'Post_created_at',
-        'Post_is_published',
-    ]
-)
+@pytest.mark.parametrize(('n_model', 'param', 'n_verbose'), [
+    ('Category', 'is_published', 'Опубликовано'),
+    ('Category', 'title', 'Заголовок'),
+    ('Category', 'slug', 'Идентификатор'),
+    ('Category', 'description', 'Описание'),
+    ('Category', 'created_at', 'Добавлено'),
+    ('Location', 'name', 'Название места'),
+    ('Location', 'created_at', 'Добавлено'),
+    ('Location', 'is_published', 'Опубликовано'),
+    ('Post', 'pub_date', 'Дата и время публикации'),
+    ('Post', 'text', 'Текст'),
+    ('Post', 'author', 'Автор публикации'),
+    ('Post', 'category', 'Категория'),
+    ('Post', 'location', 'Местоположение'),
+    ('Post', 'created_at', 'Добавлено'),
+    ('Post', 'is_published', 'Опубликовано'),
+])
 def test_models_params_translate(n_model, param, n_verbose):
     module = importlib.import_module('blog.models')
     model = getattr(module, n_model)
@@ -102,33 +79,25 @@ def test_models_params_translate(n_model, param, n_verbose):
     )
 
 
-@pytest.mark.parametrize(
-    ('n_model', 'param', 'text'),
-    [
-        (
-            'Category',
-            'is_published',
-            'Снимите галочку, чтобы скрыть публикацию.'
-        ),
-        (
-            'Category',
-            'slug',
-            'Идентификатор страницы для URL; '
-            'разрешены символы латиницы, цифры, дефис и подчёркивание.'
-        ),
-        (
-            'Post',
-            'pub_date',
-            'Если установить дату и время в будущем — '
-            'можно делать отложенные публикации.'
-        ),
-    ],
-    ids=[
-        'Category_is_published',
-        'Category_slug',
-        'Post_pub_date',
-    ]
-)
+@pytest.mark.parametrize(('n_model', 'param', 'text'), [
+    (
+        'Category',
+        'is_published',
+        'Снимите галочку, чтобы скрыть публикацию.'
+    ),
+    (
+        'Category',
+        'slug',
+        'Идентификатор страницы для URL; '
+        'разрешены символы латиницы, цифры, дефис и подчёркивание.'
+    ),
+    (
+        'Post',
+        'pub_date',
+        'Если установить дату и время в будущем — '
+        'можно делать отложенные публикации.'
+    ),
+])
 def test_help_text_translate(n_model, param, text):
     module = importlib.import_module('blog.models')
     model = getattr(module, n_model)
