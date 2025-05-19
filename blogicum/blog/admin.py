@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.utils.translation import gettext_lazy as _
+
 from .models import Category, Location, Post
 
 
@@ -23,7 +23,7 @@ class CategoryAdmin(admin.ModelAdmin):
                 'slug',
             )
         }),
-        (_('Дополнительные настройки'), {
+        ('Дополнительные настройки', {
             'classes': ('collapse',),
             'fields': (
                 'is_published',
@@ -47,7 +47,7 @@ class LocationAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('name',)
         }),
-        (_('Дополнительные настройки'), {
+        ('Дополнительные настройки', {
             'classes': ('collapse',),
             'fields': (
                 'is_published',
@@ -83,13 +83,13 @@ class PostAdmin(admin.ModelAdmin):
                 'category',
             )
         }),
-        (_('Публикация'), {
+        ('Публикация', {
             'fields': (
                 'pub_date',
                 'is_published',
             )
         }),
-        (_('Дополнительные настройки'), {
+        ('Дополнительные настройки', {
             'classes': ('collapse',),
             'fields': (),
         }),
