@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from blog.constants import MAX_LENGTH
+from blog.constants import MAX_TITLE_LENGTH
 
 User = get_user_model()
 
@@ -23,7 +23,7 @@ class AbstModel(models.Model):
 
 class Category(AbstModel):
     title = models.CharField(
-        max_length=MAX_LENGTH,
+        max_length=MAX_TITLE_LENGTH,
         verbose_name='Заголовок'
     )
     description = models.TextField(
@@ -48,7 +48,7 @@ class Category(AbstModel):
 
 class Location(AbstModel):
     name = models.CharField(
-        max_length=MAX_LENGTH,
+        max_length=MAX_TITLE_LENGTH,
         verbose_name='Название места'
     )
 
@@ -62,7 +62,7 @@ class Location(AbstModel):
 
 class Post(AbstModel):
     title = models.CharField(
-        max_length=MAX_LENGTH,
+        max_length=MAX_TITLE_LENGTH,
         verbose_name='Заголовок'
     )
     text = models.TextField(
@@ -98,7 +98,7 @@ class Post(AbstModel):
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
         ordering = ('-pub_date',)
-        default_related_name = 'author'
+        default_related_name = 'posts'
 
     def __str__(self):
         return self.title

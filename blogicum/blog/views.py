@@ -1,8 +1,9 @@
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 
-from blog.constants import LIMIT
+from blog.constants import POST_LIMIT
 from blog.models import Post, Category
+
 
 def sort_post():
     return Post.objects.select_related(
@@ -11,12 +12,12 @@ def sort_post():
         pub_date__lte=timezone.now(),
         is_published=True,
         category__is_published=True
-    ).order_by('-pub_date')
+    )
 
 
 def index(request):
     template = 'blog/index.html'
-    post_list = sort_post()[:LIMIT]
+    post_list = sort_post()[:POST_LIMIT]
 
     context = {'post_list': post_list}
     return render(request, template, context)
